@@ -27,16 +27,15 @@ Path Brute::force(Path &p, int loc, int dest, int count){
     tracks.push_back(p);
 
     Path curr;
-    for(int i = 0; i < count; i++){
+    for(int i = 0; i < count-1; i++){
         if(map.valid(loc,i) && !p.includes(i) && (i != loc) && p.size() <= count){
             curr = p;
             curr.push(i, map.get(loc,i));
 
             if(curr.size() == count && curr.loop()){
-
                 return curr;
             }
-            if(curr.size() < count /*&& pass < 100*/){
+            if(curr.size() < count){
                 tracks.push_back(force(curr, i, dest,count));
             }
         }
