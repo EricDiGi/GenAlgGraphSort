@@ -21,3 +21,9 @@ path: $(OBJECTS) testpath.cpp tracker.hpp loader.hpp loader.cpp graph.hpp graph.
 
 brute: $(OBJECTS) testbrute.cpp bruteForce.hpp bruteForce.cpp tracker.hpp loader.hpp loader.cpp graph.hpp graph.cpp
 	$(CXX) $(CXXFLAGS) -o $@ $^
+
+gene: $(OBJECTS) testgene.cpp genetic.hpp genetic.cpp tracker.hpp loader.hpp loader.cpp graph.hpp graph.cpp
+	$(CXX) $(CXXFLAGS) -o $@ $^
+
+compare: $(OBJECTS) compareMethods.cpp bruteForce.hpp bruteForce.cpp genetic.hpp genetic.cpp tracker.hpp loader.hpp loader.cpp graph.hpp graph.cpp
+	$(CXX) $(CXXFLAGS) -o $@ $^

@@ -4,11 +4,13 @@
 #include <vector>
 #include <algorithm>
 #include <iostream>
+#include <cmath>
 #include "graph.hpp"
 
 class Path{
     private:
         friend class Brute;
+        friend class Genetic;
         std::vector<int> path;
         double cost;
     public:
@@ -20,6 +22,12 @@ class Path{
             path = p;
             for(int i = 0; i < (int)p.size()-1; i++){
                 cost += m.get(p.at(i),p.at(i+1));
+            }
+        }
+        void setPath(Map m){
+            cost = 0;
+            for(int i = 0; i < (int)path.size()-1; i++){
+                cost += m.get(path.at(i),path.at(i+1));
             }
         }
         void push(int city, double c){
@@ -49,6 +57,31 @@ class Path{
         }
         void swap(int a,int b){
             swap(path.at(a), path.at(b));
+        }
+
+        void shuffle(){
+            std::vector<int> sub;
+            for(int i = 1; i < (int)path.size()-2; i++)
+                sub.push_back(path.at(i));
+            std::random_shuffle(sub.begin(),sub.end());
+            for(int i = 1; i < (int)path.size()-2; i++)
+                path.at(i) = sub.at(i-1);
+        }
+
+        friend bool operator==(const Path &P, const Path &p){
+            return P.cost == p.cost;
+        }
+        friend bool operator!=(const Path &P, const Path &p){
+            return P.cost != p.cost;
+        }
+        friend bool operator<(const Path &P, const Path &p){
+            return P.cost < p.cost;
+        }
+        friend bool operator>(const Path &P, const Path &p){
+            return P.cost > p.cost;
+        }
+        friend bool operator||(const Path &P, const Path &p){
+            return (fabs(P.cost - p.cost)/P.cost) <= 0.1;
         }
         friend std::ostream &operator<<(std::ostream &out, const Path &p){
             for(int i = 0; i < (int)p.path.size(); i++){

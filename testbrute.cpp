@@ -17,6 +17,6 @@ int main(){
         cout << "Size: ";
         cin >> n;
         cout << b.Combo(n);
-        cout << b.force(n);
+        //cout << b.force(n);
     }
 }

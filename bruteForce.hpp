@@ -9,11 +9,11 @@ class Brute{
     private:
         Map map;
         int n;
-        Path force(Path &p, int loc, int dest, int count);
+        //Path force(Path &p, int loc, int dest, int count);
         Path min(std::vector<Path> trails);
     public:
         void chart(Map m);
-        Path force(int n);
+        //Path force(int n);
         Path Combo(int n);
 };
 
