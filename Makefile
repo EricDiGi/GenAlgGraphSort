@@ -25,5 +25,8 @@ brute: $(OBJECTS) testbrute.cpp bruteForce.hpp bruteForce.cpp tracker.hpp loader
 gene: $(OBJECTS) testgene.cpp genetic.hpp genetic.cpp tracker.hpp loader.hpp loader.cpp graph.hpp graph.cpp
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
-compare: $(OBJECTS) compareMethods.cpp bruteForce.hpp bruteForce.cpp genetic.hpp genetic.cpp tracker.hpp loader.hpp loader.cpp graph.hpp graph.cpp
+compare: $(OBJECTS) compareMethods.cpp bruteForce.hpp bruteForce.cpp genetic.hpp genetic.cpp tracker.hpp loader.hpp loader.cpp graph.hpp graph.cpp TIME.hpp TIME.cpp
+	$(CXX) $(CXXFLAGS) -o $@ $^
+
+time: $(OBJECTS) testTimer.cpp TIME.hpp TIME.cpp
 	$(CXX) $(CXXFLAGS) -o $@ $^

@@ -14,13 +14,15 @@ class Genetic{
         Path best;
         Path next;
         int geneLen;
+        int Gens;
+        double mutProb;
         int worst();
         Path min();
         Path min2();
         bool hasRepeats(Path &p);
     public:
         Genetic();
-        Genetic(Map m);
+        Genetic(Map m, int g, double M);
         Path Deep();
         Path main__();
         void final(Path p);

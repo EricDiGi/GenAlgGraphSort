@@ -16,9 +16,11 @@ Genetic::Genetic(){
     srand(time(0));
 }
 
-Genetic::Genetic(Map m){
+Genetic::Genetic(Map m, int g, double M){
     srand(time(0));
     this->map = m;
+    this->Gens = g;
+    this->mutProb = M;
 }
 void Genetic::final(Path p){
     this->BEST = p;
@@ -35,17 +37,20 @@ Path Genetic::Deep(){
 Path Genetic::main__(){
     Path last = mostFit();
     int fitcount = 0;
-    while(fitcount < pow(this->geneLen,3)){
+    int GenCNT = this->Gens;
+    while(GenCNT > 0){
         select();
-        if(rand()%(int)(this->geneLen) <= (int)(this->geneLen*0.25))
+        if(rand()%1000 <= 1000*(1.0-this->mutProb))
             crossover();
-        mutate();
+        if(rand()%1000 <= 1000*this->mutProb)
+            mutate();
         putFittest();
         if(mostFit() == last)
             fitcount++;
         else
             fitcount = 0;
         last = mostFit();
+        GenCNT--;
     }
     //cout << (BEST || last) << "\t";
     return mostFit();
