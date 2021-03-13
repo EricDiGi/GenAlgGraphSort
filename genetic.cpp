@@ -132,7 +132,7 @@ void Genetic::crossover(){
 void Genetic::mutate(){
     int R = (rand()%(this->geneLen-1));
     int P = 1+(rand()%(this->geneLen-1));
-    int S = 1+(P+R)%(geneLen-1);
+    //int S = 1+(P+R)%(geneLen-1);
     if(P == 0)
         P+=1;
     if(R == 0)

@@ -38,7 +38,7 @@ Path Brute::Combo(int n){
     do{
         vector<int> temp = prime;
         bool zeros = false;
-        for(int i = 0; i < temp.size()-2; i++){
+        for(int i = 0; i < (int)temp.size()-2; i++){
             if(temp.at(i+1) == 0){
                 zeros = true;
                 break;

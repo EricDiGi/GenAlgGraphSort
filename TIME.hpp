@@ -8,7 +8,7 @@ class Timer{
     private:
         clock_t timer;
     public:*/
-    void Timer(void func());
+    double Timer(void func());
 //};
 
 #endif

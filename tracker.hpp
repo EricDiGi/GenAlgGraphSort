@@ -58,6 +58,9 @@ class Path{
         void swap(int a,int b){
             swap(path.at(a), path.at(b));
         }
+        double getCost(){
+            return cost;
+        }
 
         void shuffle(){
             std::vector<int> sub;
@@ -87,8 +90,8 @@ class Path{
             for(int i = 0; i < (int)p.path.size(); i++){
                 out << p.path.at(i) << " ";
             }
-            out << p.cost;
-            out << std::endl;
+            out << "\t" << p.cost;
+            out << "\t";//std::endl;
             return out;
         }
 };
