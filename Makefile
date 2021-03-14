@@ -19,7 +19,7 @@ load: $(OBJECTS) testLoad.cpp loader.hpp loader.cpp graph.hpp graph.cpp
 path: $(OBJECTS) testpath.cpp tracker.hpp loader.hpp loader.cpp graph.hpp graph.cpp
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
-brute: $(OBJECTS) testbrute.cpp bruteForce.hpp bruteForce.cpp tracker.hpp loader.hpp loader.cpp graph.hpp graph.cpp
+brute: $(OBJECTS) testbrute.cpp bruteForce.hpp bruteForce.cpp tracker.hpp loader.hpp loader.cpp graph.hpp graph.cpp component.hpp TIME.hpp TIME.cpp genetic.hpp genetic.cpp
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
 gene: $(OBJECTS) testgene.cpp genetic.hpp genetic.cpp tracker.hpp loader.hpp loader.cpp graph.hpp graph.cpp

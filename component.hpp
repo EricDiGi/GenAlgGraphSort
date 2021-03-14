@@ -38,9 +38,14 @@ double Mute[] = {0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.9, 1.0};
 vector<Stats> BASE;
 vector<Path> BRUTE;
 vector<Stats> CUMMULATIVE;
+
 void LoadMap(){
     Load l;
     MAP = l.run();
+}
+
+void setN(int num){
+    n = num;
 }
 
 void BruteForce_(){
@@ -92,7 +97,7 @@ void runtime(void func()){
 }
 
 void runFullAuto(){
-    cout << "BRUTE FORCE\n";
+    /*cout << "BRUTE FORCE\n";
     for(int d = 0; d < MAX_PATH || STOP_AUTO; d++){
         n = d+MAX_PATH;
         runtime(BruteForce_);
@@ -100,7 +105,7 @@ void runFullAuto(){
         cout << s;
         cout << ((double)d/(double)MAX_PATH)*100 << "% complete\n";
         BASE.push_back(s);
-    }
+    }*/
     cout << "GENETIC ALGORITHM\n";
     for(int a = 0; a < MAX_MUTE_ITER || STOP_AUTO; a++){
         M = Mute[a];
