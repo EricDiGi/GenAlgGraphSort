@@ -1,28 +1,10 @@
 #include <iostream>
-#include <fstream>
-#include <string>
 #include "graph.hpp"
 #include "loader.hpp"
-#include "tracker.hpp"
-#include "component.hpp"
 #include "bruteForce.hpp"
-#include "statistics.hpp"
 
 using namespace std;
 
-int main(){
-    fstream file;
-    file.open("bruteData.txt", ios::out);
-    LoadMap();
-    for(int i = 10; i <= 20; i++){
-        setN(i);
-        double t = Timer(BruteForce_);
-        file << Stats(i, 0,0,0,t,0);
-    }
-    file.close();
-}
-
-/*
 int main(){
     Load l;
     Map m = l.run();
@@ -33,6 +15,29 @@ int main(){
         cout << "Size: ";
         cin >> n;
         cout << b.Combo(n);
-        //cout << b.force(n);
     }
-}*/
+}
+
+/**************************************
+Run to get all brute forced values.
+Est. Time to full result : ~2 weeks
+**************************************/
+/*
+void write(int i,double t){
+    fstream file;
+    file.open("bruteData.txt", ios::app);
+    file << i << "\t" << t << "\t" << BRUTE.back().getCost() << endl;
+    file.close();
+}
+
+int main(){
+    
+    LoadMap();
+    for(int i = 10; i <= 20; i++){
+        setN(i);
+        double t = Timer(BruteForce_);
+        cout << i << " ";
+        write(i,t);
+    }
+}
+*/

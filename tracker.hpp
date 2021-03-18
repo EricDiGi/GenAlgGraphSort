@@ -17,6 +17,9 @@ class Path{
         Path(){
             cost = 0;
         }
+        Path(int len){
+            cost = len;
+        }
         Path(Map m,std::vector<int> p){
             cost = 0;
             path = p;
@@ -80,6 +83,9 @@ class Path{
         friend bool operator<(const Path &P, const Path &p){
             return P.cost < p.cost;
         }
+        friend bool operator<=(const Path &P, const Path &p){
+            return P.cost <= p.cost;
+        }
         friend bool operator>(const Path &P, const Path &p){
             return P.cost > p.cost;
         }
@@ -91,7 +97,7 @@ class Path{
                 out << p.path.at(i) << " ";
             }
             out << "\t" << p.cost;
-            out << "\t";//std::endl;
+            out << "\t";
             return out;
         }
 };

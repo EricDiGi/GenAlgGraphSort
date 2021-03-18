@@ -11,46 +11,20 @@ void Brute::chart(Map m){
     this->map = m;
 }
 
-Path Brute::min(vector<Path> trails){
-    Path min;
-    if(trails.size() > 0){
-        min = trails.at(0);
-        for(int i = 0; i < (int)trails.size(); i++){
-            if(trails.at(i).cost < min.cost)
-                min = trails.at(i);
-        }
-    }
-    return min;
-}
 
 Path Brute::Combo(int n){
     vector<int> prime;
-    vector<vector<int>> set;
-    for(int i = 0; i <= n; i++){
-        if(i == n){
-            prime.push_back(0);
-        }
-        else{
-            prime.push_back(i);
-        }
+    for(int i = 1; i < n; i++){
+        prime.push_back(i);
     }
-    Path min = Path(map,prime);
+    Path min = Path(100000);
+    Path curr;
     do{
         vector<int> temp = prime;
-        bool zeros = false;
-        for(int i = 0; i < (int)temp.size()-2; i++){
-            if(temp.at(i+1) == 0){
-                zeros = true;
-                break;
-            }
-        }
-        if(!zeros && temp.at(0) == 0){
-            temp.at(n) = 0;
-            Path p = Path(map, temp);
-            if(p.cost < min.cost)
-                min = p;
-        }
-
+        temp.insert(temp.begin(),0);
+        temp.push_back(0);
+        curr = Path(map,temp);
+        min = (curr < min) ? curr : min;
     }while(next_permutation(prime.begin(), prime.end()));
 
     return min;

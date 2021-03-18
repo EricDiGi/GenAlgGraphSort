@@ -19,20 +19,17 @@ load: $(OBJECTS) testLoad.cpp loader.hpp loader.cpp graph.hpp graph.cpp
 path: $(OBJECTS) testpath.cpp tracker.hpp loader.hpp loader.cpp graph.hpp graph.cpp
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
-brute: $(OBJECTS) testbrute.cpp bruteForce.hpp bruteForce.cpp tracker.hpp loader.hpp loader.cpp graph.hpp graph.cpp component.hpp TIME.hpp TIME.cpp genetic.hpp genetic.cpp
+brute: $(OBJECTS) testbrute.cpp bruteForce.hpp bruteForce.cpp tracker.hpp loader.hpp loader.cpp graph.hpp graph.cpp
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
 gene: $(OBJECTS) testgene.cpp genetic.hpp genetic.cpp tracker.hpp loader.hpp loader.cpp graph.hpp graph.cpp
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
-compare: $(OBJECTS) testCompareMethods.cpp bruteForce.hpp bruteForce.cpp genetic.hpp genetic.cpp tracker.hpp loader.hpp loader.cpp graph.hpp graph.cpp TIME.hpp TIME.cpp
+manual: $(OBJECTS) runManual.cpp component.hpp bruteForce.hpp bruteForce.cpp genetic.hpp genetic.cpp tracker.hpp loader.hpp loader.cpp graph.hpp graph.cpp TIME.hpp
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
-manual: $(OBJECTS) runManual.cpp component.hpp bruteForce.hpp bruteForce.cpp genetic.hpp genetic.cpp tracker.hpp loader.hpp loader.cpp graph.hpp graph.cpp TIME.hpp TIME.cpp
+auto: $(OBJECTS) runAuto.cpp component.hpp bruteForce.hpp bruteForce.cpp genetic.hpp genetic.cpp tracker.hpp loader.hpp loader.cpp graph.hpp graph.cpp TIME.hpp statistics.hpp
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
-auto: $(OBJECTS) runAuto.cpp component.hpp bruteForce.hpp bruteForce.cpp genetic.hpp genetic.cpp tracker.hpp loader.hpp loader.cpp graph.hpp graph.cpp TIME.hpp TIME.cpp statistics.hpp
-	$(CXX) $(CXXFLAGS) -o $@ $^
-
-time: $(OBJECTS) testTimer.cpp TIME.hpp TIME.cpp
+time: $(OBJECTS) testTimer.cpp TIME.hpp
 	$(CXX) $(CXXFLAGS) -o $@ $^

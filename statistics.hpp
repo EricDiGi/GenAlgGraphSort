@@ -10,31 +10,45 @@ const int PATH_LENGTH = 0;
 const int POPULATION_SIZE = 1;
 const int NUM_GENERATIONS = 2;
 const int PROB_MUTATION = 3;
-const int AVG_TIME = 4;
-const int AVG_DEV = 5;
+const int AVG_COST = 4;
+const int AVG_TIME = 5;
+const int MAX_TIME = 6;
 
 class Stats{
     private:
         int n;
-        int p;
+        double p;
         int g;
         double M;
         double avgCost;
-        double avgDev;
+        vector<double> runs;
+        double aTime;
+        double Tmax;
     public:
         Stats(){
             n = p = g = 0;
             M = 0;
             avgCost = 0;
-            avgDev = 0;
+            aTime = 0;
+            Tmax = 0;
         }
-        Stats(int N,int P,int G,double m,double aC,double aD){
+        Stats(int N,double P,int G,double m,double aC, double aT,double tm){
             n = N; 
             p = P; 
             g = G; 
             M = m; 
             avgCost = aC; 
-            avgDev = aD;
+            aTime = aT;
+            Tmax = tm;
+        }
+        Stats(int N,double P,int G,double m,vector<double> aC, double aT,double tm){
+            n = N; 
+            p = P; 
+            g = G; 
+            M = m; 
+            runs = aC; 
+            aTime = aT;
+            Tmax = tm;
         }
         double get(int v){
             switch(v){
@@ -49,24 +63,60 @@ class Stats{
                 case 4:
                     return avgCost;
                 case 5:
-                    return avgDev;
+                    return aTime;
+                case 6:
+                    return Tmax;
             }
             return 0;
         }
         friend ostream &operator<<(ostream &out, const Stats &s){
-            out << s.n << " - " << s.p << " - " << s.g << " - " << s.M << " - " << s.avgCost << " - " << s.avgDev << endl;
+            if((int)s.runs.size() > 0){
+                out << s.n;
+                for(int i = 0; i < (int)s.runs.size(); i++){
+                    out << " " << s.runs.at(i);
+                }
+            }
+            else{
+                out << s.n << " " << s.p << " " << s.g << " " << s.M << " " << s.avgCost << " " << s.aTime << " " << s.Tmax;
+            }
             return out;
         }
 
+        friend bool operator<(const Stats &S, const Stats &s){
+            return (S.avgCost < s.avgCost);
+        }
+
+        friend bool operator<=(const Stats &S, const Stats &s){
+            return (S.avgCost <= s.avgCost);
+        }
+
+        friend bool operator>(const Stats &S, const Stats &s){
+            return (S.avgCost > s.avgCost);
+        }
+
+        friend Stats operator+(const Stats &S, const Stats &s){
+            Stats R;
+            R.n = -1;
+            R.p = S.p + s.p;
+            R.g = S.g + s.g;
+            R.M = S.M + s.M;
+            R.avgCost = S.avgCost + s.avgCost;
+            R.aTime = S.aTime + s.aTime;
+            R.Tmax = S.Tmax + s.Tmax;
+            return R;
+        }
+        friend Stats operator/(const Stats &R, const double &i){
+            Stats r;
+            r.n = R.n/i;
+            r.p = R.p/i;
+            r.g = R.g/i;
+            r.M = R.M/i;
+            r.avgCost = R.avgCost/i;
+            r.aTime = R.aTime/i;
+            r.Tmax = R.Tmax/i;
+            return r;
+        }
 };
 
-Stats Best(vector<Stats> STATS){
-    Stats min = STATS.at(0);
-    for(Stats it: STATS){
-        if(it.get(AVG_DEV) < min.get(AVG_DEV))
-            min = it;
-    }
-    return min;
-}
 
 #endif

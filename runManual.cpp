@@ -1,8 +1,4 @@
 #include <iostream>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string>
-#include <ctime>
 #include "component.hpp"
 
 using namespace std;
@@ -13,5 +9,12 @@ int main(){
     while(1){
         ManualGeneticValues();
         runtime(Genetic_);
+        cout << modeTime << " \t";
+        cout << GENE << endl;
+        if(n<=12){
+            runtime(BruteForce_);
+            cout << modeTime << " \t";
+            cout << BRUTE.back() << endl;
+        }
     }
 }

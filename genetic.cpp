@@ -22,10 +22,12 @@ Genetic::Genetic(Map m, int g, double M){
     this->Gens = g;
     this->mutProb = M;
 }
+
 void Genetic::final(Path p){
     this->BEST = p;
 }
 
+//Does second iteration using elites from each run
 Path Genetic::Deep(){
     vector<Path> MAX;
     for(int i = 0; i < geneLen; i++)
@@ -36,23 +38,17 @@ Path Genetic::Deep(){
 
 Path Genetic::main__(){
     Path last = mostFit();
-    int fitcount = 0;
     int GenCNT = this->Gens;
     while(GenCNT > 0){
         select();
-        if(rand()%1000 <= 1000*(1.0-this->mutProb))
+        if(rand()%11 <= 10*(1.0-this->mutProb))
             crossover();
-        if(rand()%1000 <= 1000*this->mutProb)
+        if(rand()%11 <= 10*this->mutProb)
             mutate();
         putFittest();
-        if(mostFit() == last)
-            fitcount++;
-        else
-            fitcount = 0;
         last = mostFit();
         GenCNT--;
     }
-    //cout << (BEST || last) << "\t";
     return mostFit();
 }
 
@@ -72,7 +68,7 @@ void Genetic::initialize(int n, int p){ //n num cities p num pop
 }
 
 void Genetic::initialize(int n){
-    initialize(n, 3*n);
+    initialize(n, 2*n);
 }
 
 int Genetic::worst(){
@@ -113,46 +109,41 @@ Path Genetic::mostFit(){
 
 void Genetic::select(){
     best = min();
-    if(rand()%this->geneLen <= this->geneLen*0.9)
-        next = POP.at(rand()%((int)POP.size()));
-    else
-        next = min2();
+    next = min2();
 }
 
+//Subject to generate repeats
 void Genetic::crossover(){
     int R = (rand()%(this->geneLen-1));
-    //cout << R << endl;
-    for(int i = 1; i < R; i++){
+    R += (R == 0) ? 1:0;
+    for(int i = 1; i < R; i++)
         swap(best.path.at(i),next.path.at(i));
-    }
     next.setPath(map);
     best.setPath(map);
 }
 
+//shuffle is found in tracker.hpp
 void Genetic::mutate(){
-    int R = (rand()%(this->geneLen-1));
-    int P = 1+(rand()%(this->geneLen-1));
-    //int S = 1+(P+R)%(geneLen-1);
-    if(P == 0)
-        P+=1;
-    if(R == 0)
-        R+=1;
-    //swap(best.path.at(P), best.path.at(S));
+    next.shuffle();
     best.shuffle();
-    swap(next.path.at(R), next.path.at(P));
-   // next.shuffle();
     best.setPath(map);
     next.setPath(map);
 }
 
+//best child should have no repeats
 Path Genetic::bestChild(){
-    Path m = (best < next) ? best : next;
+    Path m = Path();
+    if(!hasRepeats(best) && !hasRepeats(next))
+        m = (best <= next) ? best : next;
     return m;
 }
 
+//Replace worst case with best case
 void Genetic::putFittest(){
     Path ABS = bestChild();
-    if(!hasRepeats(ABS) && this->POP.at(worst()) > ABS)
+    if(ABS.getCost() == 0)
+        return;
+    if(this->POP.at(worst()) > ABS)
         this->POP.at(worst()) = ABS;
 }
 

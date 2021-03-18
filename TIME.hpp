@@ -3,12 +3,14 @@
 
 #include <iostream>
 #include <ctime>
-/*
-class Timer{
-    private:
-        clock_t timer;
-    public:*/
-    double Timer(void func());
-//};
+
+double Timer(void func()){
+    clock_t t;
+    t = clock();
+    func();
+    t = clock() - t;
+    double T = t/(double)CLOCKS_PER_SEC;
+    return T;
+}
 
 #endif
