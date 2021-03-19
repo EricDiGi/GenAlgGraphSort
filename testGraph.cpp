@@ -1,3 +1,8 @@
+/***************************************************************
+  Student Name: Eric DiGioacchino
+  File Name: testGraph.cpp
+  Assignment number: Project 3
+**************************************************************/
 #include <iostream>
 #include "graph.hpp"
 

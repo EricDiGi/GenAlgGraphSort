@@ -1,3 +1,8 @@
+/***************************************************************
+  Student Name: Eric DiGioacchino
+  File Name: runManual.cpp
+  Assignment number: Project 3
+**************************************************************/
 #include <iostream>
 #include "component.hpp"
 

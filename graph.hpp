@@ -1,3 +1,8 @@
+/***************************************************************
+  Student Name: Eric DiGioacchino
+  File Name:graph.hpp
+  Assignment number: Project 3
+**************************************************************/
 #ifndef graph_HPP
 #define graph_HPP
 

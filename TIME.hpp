@@ -1,3 +1,8 @@
+/***************************************************************
+  Student Name: Eric DiGioacchino
+  File Name: TIME.hpp
+  Assignment number: Project 3
+**************************************************************/
 #ifndef TIME_HPP
 #define TIME_HPP
 

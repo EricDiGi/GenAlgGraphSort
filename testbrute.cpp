@@ -1,3 +1,9 @@
+/***************************************************************
+  Student Name: Eric DiGioacchino
+  File Name: testbrute.cpp
+  Assignment number: Project 3
+**************************************************************/
+
 #include <iostream>
 #include "graph.hpp"
 #include "loader.hpp"
@@ -20,7 +26,6 @@ int main(){
 
 /**************************************
 Run to get all brute forced values.
-Est. Time to full result : ~2 weeks
 **************************************/
 /*
 void write(int i,double t){

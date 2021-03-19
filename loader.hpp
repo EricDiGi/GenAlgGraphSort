@@ -1,3 +1,8 @@
+/***************************************************************
+  Student Name: Eric DiGioacchino
+  File Name: loader.hpp
+  Assignment number: Project 3
+**************************************************************/
 #ifndef loader_HPP
 #define loader_HPP
 

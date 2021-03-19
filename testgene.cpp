@@ -1,3 +1,8 @@
+/***************************************************************
+  Student Name: Eric DiGioacchino
+  File Name: testgene.cpp
+  Assignment number: Project 3
+**************************************************************/
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>

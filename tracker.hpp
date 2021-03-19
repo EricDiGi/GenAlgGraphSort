@@ -1,3 +1,8 @@
+/***************************************************************
+  Student Name: Eric DiGioacchino
+  File Name: tracker.hpp
+  Assignment number: Project 3
+**************************************************************/
 #ifndef tracker_HPP
 #define tracker_HPP
 

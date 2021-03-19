@@ -1,3 +1,8 @@
+/***************************************************************
+  Student Name: Eric DiGioacchino
+  File Name: statistics.hpp
+  Assignment number: Project 3
+**************************************************************/
 #ifndef statistics_HPP
 #define statistics_HPP
 
@@ -16,6 +21,7 @@ const int MAX_TIME = 6;
 
 class Stats{
     private:
+        friend class Heap;
         int n;
         double p;
         int g;
@@ -69,6 +75,9 @@ class Stats{
             }
             return 0;
         }
+        vector<double> getRuns(){
+            return runs;
+        }
         friend ostream &operator<<(ostream &out, const Stats &s){
             if((int)s.runs.size() > 0){
                 out << s.n;
@@ -77,7 +86,7 @@ class Stats{
                 }
             }
             else{
-                out << s.n << " " << s.p << " " << s.g << " " << s.M << " " << s.avgCost << " " << s.aTime << " " << s.Tmax;
+                out << s.n << " " << s.p << " " << s.g << " " << s.M << " " << s.runs.size() << " " << s.avgCost << " " << s.aTime << " " << s.Tmax;
             }
             return out;
         }

@@ -1,3 +1,8 @@
+/***************************************************************
+  Student Name: Eric DiGioacchino
+  File Name: genetic.cpp
+  Assignment number: Project 3
+**************************************************************/
 #include <iostream>
 #include <sys/time.h>
 #include <stdio.h>

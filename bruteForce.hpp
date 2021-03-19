@@ -1,3 +1,8 @@
+/***************************************************************
+  Student Name: Eric DiGioacchino
+  File Name: bruteForce.hpp
+  Assignment number: Project 3
+**************************************************************/
 #ifndef bruteForce_HPP
 #define bruteForce_HPP
 

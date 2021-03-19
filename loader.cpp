@@ -4,6 +4,12 @@
 
 using namespace std;
 
+/***************************************************************
+  Student Name: Eric DiGioacchino
+  File Name: loader.cpp
+  Assignment number: Project 3
+**************************************************************/
+
 Map Load::run(){
     X = Y = 0;
     double dat;

@@ -28,8 +28,11 @@ gene: $(OBJECTS) testgene.cpp genetic.hpp genetic.cpp tracker.hpp loader.hpp loa
 manual: $(OBJECTS) runManual.cpp component.hpp bruteForce.hpp bruteForce.cpp genetic.hpp genetic.cpp tracker.hpp loader.hpp loader.cpp graph.hpp graph.cpp TIME.hpp
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
-auto: $(OBJECTS) runAuto.cpp component.hpp bruteForce.hpp bruteForce.cpp genetic.hpp genetic.cpp tracker.hpp loader.hpp loader.cpp graph.hpp graph.cpp TIME.hpp statistics.hpp
+auto: $(OBJECTS) runAuto.cpp component.hpp bruteForce.hpp bruteForce.cpp genetic.hpp genetic.cpp tracker.hpp loader.hpp loader.cpp graph.hpp graph.cpp TIME.hpp statistics.hpp heap.hpp heap.cpp
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
 time: $(OBJECTS) testTimer.cpp TIME.hpp
+	$(CXX) $(CXXFLAGS) -o $@ $^
+
+hopper: $(OBJECTS) runHeap.cpp heap.cpp heap.hpp statistics.hpp
 	$(CXX) $(CXXFLAGS) -o $@ $^

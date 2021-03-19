@@ -1,9 +1,16 @@
+/***************************************************************
+  Student Name: Eric DiGioacchino
+  File Name: component.hpp
+  Assignment number: Project 3
+**************************************************************/
+
 #ifndef component_HPP
 #define component_HPP
 
 #include <iostream>
 #include <fstream>
 #include "TIME.hpp"
+#include "heap.hpp"
 #include "graph.hpp"
 #include "loader.hpp"
 #include "tracker.hpp"
@@ -36,6 +43,8 @@ double Mute[] = {0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.9, 1.0};
 vector<Stats> BASE;
 vector<Path> BRUTE;
 vector<Stats> CUMMULATIVE;
+
+Stats bestRun();
 
 void LoadMap(){
     Load l;
@@ -158,44 +167,10 @@ void runFullAuto(){
     }
 }
 
-//Worst case 2n best case 1
-void sort_put(vector<Stats> &mound, Stats S){
-    int s = mound.size()-1;
-    for(int i = 0; i <= s; i++){
-        if(mound.at(i)>S){
-            mound.insert(mound.begin()+i, S);
-            return;
-        }
-    }
-    mound.push_back(S);
-}
-
-
-Stats bestMakeUp(){
-    vector<Stats> MOUND;
-    int entry; double pop; int gens; double mute; double aCost; double aTime; double maxT;
-
-    fstream file;
-    file.open("geneData.txt", ios::in);
-    cout << "open\n";
-    while(!file.eof()){
-        file >> entry >> pop >> gens >> mute >> aCost >> aTime >> maxT;
-        Stats s = Stats(entry, pop, gens, mute, aCost, aTime, maxT);
-        sort_put(MOUND,s);
-    }
-    file.close();
-
-    cout << "\nBest case:" << endl;
-    cout << MOUND.at(0) << endl;
-    cout << "Worst case" << endl;
-    cout << MOUND.back() << endl;
-    return MOUND.at(0);
-}
-
 void runBest(){
     fstream FILE;
 
-    Stats best = bestMakeUp();
+    Stats best = bestRun();
     p = best.get(POPULATION_SIZE);
     g = best.get(NUM_GENERATIONS);
     M = best.get(PROB_MUTATION);
@@ -205,19 +180,56 @@ void runBest(){
     FILE.open("comparison.txt", ios::out);
     for(int i = 0; i <= MAX_PATH; i++){
         n = i+10;
-        FILE << "G:\t" << n << "\t";
-        runtime(Genetic_);
-        FILE << modeTime << "\t";
-        FILE << GENE << endl;
+        FILE << n << "\t";
         if(n <= 12){
-            FILE << "B:\t" << n << "\t";
             runtime(BruteForce_);
             FILE << modeTime << "\t";
-            FILE << BRUTE.back() << endl;
+            FILE << BRUTE.back().getCost() << "\t";
         }
+        else{FILE << "\t\t";}
+        runtime(Genetic_);
+        FILE << modeTime << "\t";
+        FILE << GENE.getCost() << endl;
         cout << i*10 << "% complete\n";
     }
     FILE.close();
+}
+
+Stats bestRun(){
+    Heap h;
+
+    fstream file;
+    file.open("geneData.txt", ios::in);
+    while(!file.eof()){
+        Stats s;
+        int n;
+        vector<double> entry;
+        file >> n;
+        double v;
+        for(int i = 0; i < 11; i++){
+            file >> v;
+            entry.push_back(v);
+        }
+        s = Stats(n,0,0,0,entry,0,0);
+        h.push(s);
+    }
+    file.close();
+    h.pull();
+    Stats top = h.top();
+
+    int run = 0;
+    for(int a = 0; a < MAX_MUTE_ITER; a++){
+        M = Mute[a];
+        for(int b = 0; b < MAX_GEN_ITER; b++){
+            g = Generations[b];
+            for(int c = 0; c < MAX_POP_ITER || run < n; c++){
+                p = PopAlter[c];
+                run++;
+    }}}
+    Stats s = Stats(n,p,g,M,top.getRuns(),0,0);
+    
+    cout << "G: " << g << "\nP: n*" << p << "\nM: " << M << endl;
+    return s;
 }
 
 #endif

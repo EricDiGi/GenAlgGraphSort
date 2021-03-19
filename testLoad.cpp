@@ -1,5 +1,9 @@
+/***************************************************************
+  Student Name: Eric DiGioacchino
+  File Name: testLoad.cpp
+  Assignment number: Project 3
+**************************************************************/
 #include <iostream>
-#include <string>
 #include "graph.hpp"
 #include "loader.hpp"
 

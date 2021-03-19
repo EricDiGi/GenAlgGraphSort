@@ -1,3 +1,8 @@
+/***************************************************************
+  Student Name: Eric DiGioacchino
+  File Name: genetic.hpp
+  Assignment number: Project 3
+**************************************************************/
 #ifndef genetic_HPP
 #define genetic_HPP
 
