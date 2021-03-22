@@ -4,7 +4,7 @@ CXXFLAGS = -g -std=c++11 -Wall
 SRCS = $(wildcard *.hpp)
 OBJECTS = $(SRCS: .hpp=.o)
 
-all: graph
+all: manual auto
 
 clean:
 	rm -rf *.dSYM
@@ -25,7 +25,7 @@ brute: $(OBJECTS) testbrute.cpp bruteForce.hpp bruteForce.cpp tracker.hpp loader
 gene: $(OBJECTS) testgene.cpp genetic.hpp genetic.cpp tracker.hpp loader.hpp loader.cpp graph.hpp graph.cpp
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
-manual: $(OBJECTS) runManual.cpp component.hpp bruteForce.hpp bruteForce.cpp genetic.hpp genetic.cpp tracker.hpp loader.hpp loader.cpp graph.hpp graph.cpp TIME.hpp
+manual: $(OBJECTS) runManual.cpp component.hpp bruteForce.hpp bruteForce.cpp genetic.hpp genetic.cpp tracker.hpp loader.hpp loader.cpp graph.hpp graph.cpp TIME.hpp heap.hpp heap.cpp
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
 auto: $(OBJECTS) runAuto.cpp component.hpp bruteForce.hpp bruteForce.cpp genetic.hpp genetic.cpp tracker.hpp loader.hpp loader.cpp graph.hpp graph.cpp TIME.hpp statistics.hpp heap.hpp heap.cpp
